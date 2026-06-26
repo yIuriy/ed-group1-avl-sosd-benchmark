@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "ed-avl-sosd-benchmark"
+version = "0.1.0"
+description = "Initial structure for a Data Structures final project using AVL and SOSD workloads."
+authors = ["Group 1"]
+readme = "README.md"
+packages = [
+    { include = "src" },
+    { include = "scripts" },
+]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<4.0"
+numpy = "^2.0.0"
+pandas = "^2.2.0"
+matplotlib = "^3.9.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+ruff = "^0.5.0"
+
+[tool.poetry.scripts]
+run-trace = "src.run_trace:main"
+benchmark = "src.benchmark:main"
+plot-results = "scripts.plot_results:main"
+
+[build-system]
+requires = ["poetry-core>=1.9.0"]
+build-backend = "poetry.core.masonry.api"

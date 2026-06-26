@@ -216,3 +216,26 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Project environments
+.venv/
+
+# Python caches
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# SOSD data and generated traces
+data/*.bin
+data/*.uint32
+data/*.uint64
+data/*.zst
+data/*.trace
+traces/
+
+# Generated benchmark outputs and plots
+results/*.out
+results/*.csv
+results/*.png
+results/*.pdf
