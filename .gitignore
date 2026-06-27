@@ -239,3 +239,6 @@ results/*.out
 results/*.csv
 results/*.png
 results/*.pdf
+
+.agents
+.codex
