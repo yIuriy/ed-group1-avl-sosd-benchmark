@@ -8,7 +8,7 @@ Este relatório apresenta a análise experimental de desempenho de uma implement
 
 Para garantir a reprodutibilidade dos resultados, todas as medições foram realizadas no seguinte ambiente físico e lógico:
 - **Processador:** Intel(R) Core(TM) i5-1235U (12ª Geração, arquitetura híbrida Intel Alder Lake, 10 núcleos / 12 threads)
-- **Sistema Operacional:** Linux (Kernel 7.1.3-arch1-2)
+- **Sistema Operacional:** Arch Linux (Kernel 7.1.3-arch1-2)
 - **Interpretador:** Python 3.14.6
 - **Bibliotecas Principais:** NumPy 2.5.0, Pandas 2.3.3, Matplotlib 3.11.0
 - **Configuração do Grupo 1:**
