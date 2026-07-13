@@ -38,9 +38,9 @@ poetry run plot-results --help
 - [x] Initial project structure
 - [x] Poetry configuration
 - [x] Module and CLI skeletons
-- [ ] AVL implementation
-- [ ] BST baseline implementation
-- [ ] Trace execution logic
-- [ ] Benchmarks
-- [ ] Plotting logic
-- [ ] Tests
+- [x] AVL implementation
+- [x] BST baseline implementation
+- [x] Trace execution logic
+- [x] Benchmarks
+- [x] Plotting logic
+- [x] Tests
