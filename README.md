@@ -25,12 +25,55 @@ Project workflow and AI usage rules are documented in `AGENTS.md`.
 poetry install
 ```
 
-Useful entry points:
+Running the Project
 
+You can run the benchmarks, trace execution, and plotting using either the registered Poetry shortcuts or by invoking Python modules directly.
+
+### 1. Benchmarking (AVL vs BST)
+
+To run the complete parameter sweep:
+- **Using Poetry shortcut:**
+  ```bash
+  poetry run benchmark --sweep
+  ```
+- **Using Python module:**
+  ```bash
+  poetry run python3 -m src.benchmark --sweep
+  ```
+- **Using Python script path:**
+  ```bash
+  poetry run python3 src/benchmark.py --sweep
+  ```
+
+### 2. Executing Workload Traces
+
+To run a single workload trace file:
+- **Using Poetry shortcut:**
+  ```bash
+  poetry run run-trace --tree avl --trace <path_to_trace> --out <path_to_out>
+  ```
+- **Using Python module:**
+  ```bash
+  poetry run python3 -m src.run_trace --tree avl --trace <path_to_trace> --out <path_to_out>
+  ```
+
+### 3. Plotting Results
+
+To generate comparative graphs:
+- **Using Poetry shortcut:**
+  ```bash
+  poetry run plot-results
+  ```
+- **Using Python module:**
+  ```bash
+  poetry run python3 -m scripts.plot_results
+  ```
+
+### 4. Running Tests
+
+To run the project's unit tests:
 ```bash
-poetry run run-trace --help
-poetry run benchmark --help
-poetry run plot-results --help
+poetry run pytest
 ```
 
 ## Current Status
