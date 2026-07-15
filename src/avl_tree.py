@@ -36,7 +36,7 @@ class AVLTree:
         return self._search(self.root, key)
         
     def rank(self, key: int) -> int:
-        """Return the number of keys less than or equal to the given key."""
+        """Return the number of keys strictly less than the given key."""
         return self._rank(self.root, key)
 
     def select(self, index: int) -> int | None:
@@ -47,9 +47,13 @@ class AVLTree:
 
     def range_sum(self, start: int, end: int) -> int:
         """Return the sum of keys in the inclusive interval [start, end]."""
+        return self.range_agg(start, end)
+
+    def range_agg(self, start: int, end: int) -> int:
+        """Return the sum of keys in the inclusive interval [start, end]."""
         if start > end:
             return 0
-        return self._prefix_sum(self.root, end) - self._prefix_sum(self.root, start -1)
+        return self._prefix_sum(self.root, end) - self._prefix_sum(self.root, start - 1)
 
     def _height(self, node: Node | None) -> int:
         """Return the cached height for a node."""
@@ -175,7 +179,7 @@ class AVLTree:
             return self._search(node.right, key)
 
     def _rank(self, node: Node | None, key: int) -> int:
-        """Recursive rank helper."""
+        """Recursive rank helper for keys strictly less than key."""
         if node is None:
             return 0
         
@@ -184,7 +188,7 @@ class AVLTree:
         elif key > node.key:
             return self._size(node.left) + 1 + self._rank(node.right, key)
         else:
-            return self._size(node.left) + 1
+            return self._size(node.left)
         
     def _select(self, node: Node | None, index: int) -> int | None:
         """Recursive select helper."""        

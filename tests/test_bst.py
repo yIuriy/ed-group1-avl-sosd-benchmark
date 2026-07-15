@@ -82,3 +82,32 @@ def test_duplicate_insert():
         tree.insert(10)
 
         assert tree.search(10)
+
+
+def test_avl_augmented_operations():
+    tree = AVLTree()
+    for x in [15, 10, 5, 20]:
+        tree.insert(x)
+
+    # Test rank (strictly less than)
+    assert tree.rank(5) == 0
+    assert tree.rank(7) == 1
+    assert tree.rank(10) == 1
+    assert tree.rank(12) == 2
+    assert tree.rank(15) == 2
+    assert tree.rank(20) == 3
+    assert tree.rank(25) == 4
+
+    # Test select (0-based index)
+    assert tree.select(0) == 5
+    assert tree.select(1) == 10
+    assert tree.select(2) == 15
+    assert tree.select(3) == 20
+    assert tree.select(4) is None
+
+    # Test range_agg / range_sum
+    assert tree.range_agg(5, 20) == 50
+    assert tree.range_agg(10, 15) == 25
+    assert tree.range_agg(5, 5) == 5
+    assert tree.range_agg(6, 9) == 0
+    assert tree.range_agg(10, 5) == 0
