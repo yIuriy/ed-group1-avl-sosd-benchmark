@@ -27,25 +27,25 @@ A tabela abaixo apresenta os tempos médios de operação (em microssegundos, µ
 
 | Estrutura | Carga ($N$) | Tempo Médio (µs) | Mediana p50 (µs) | Percentil p99 (µs) |
 | :--- | :--- | :--- | :--- | :--- |
-| **AVL** | 100 | 3.47 | 3.83 | 6.80 |
-| **BST** | 100 | 1.23 | 1.09 | 5.94 |
-| **AVL** | 1.000 | 4.70 | 5.40 | 9.26 |
-| **BST** | 1.000 | 0.76 | 0.71 | 1.71 |
-| **AVL** | 10.000 | 8.02 | 8.13 | 22.91 |
-| **BST** | 10.000 | 1.53 | 1.23 | 3.45 |
-| **AVL** | 100.000 | 8.86 | 10.54 | 17.82 |
-| **BST** | 100.000 | 1.54 | 1.38 | 3.34 |
-| **AVL** | 500.000 | 12.31 | 14.24 | 27.81 |
-| **BST** | 500.000 | 2.65 | 2.31 | 6.28 |
+| **AVL** | 100 | 1.77 | 1.91 | 3.69 |
+| **BST** | 100 | 0.76 | 0.58 | 5.02 |
+| **AVL** | 1.000 | 2.13 | 2.45 | 4.80 |
+| **BST** | 1.000 | 0.56 | 0.50 | 1.46 |
+| **AVL** | 10.000 | 3.19 | 3.72 | 6.62 |
+| **BST** | 10.000 | 0.71 | 0.51 | 2.68 |
+| **AVL** | 100.000 | 4.63 | 5.53 | 9.69 |
+| **BST** | 100.000 | 0.78 | 0.69 | 1.59 |
+| **AVL** | 500.000 | 7.49 | 7.84 | 25.27 |
+| **BST** | 500.000 | 1.32 | 1.09 | 3.04 |
 
 #### Detalhamento por Operação ($N = 500.000$):
-- **AVL:** Inserção = 16.52 µs, Remoção = 15.73 µs, Busca = 2.68 µs
-- **BST:** Inserção = 2.88 µs, Remoção = 2.84 µs, Busca = 2.14 µs
+- **AVL:** Inserção = 9.96 µs, Remoção = 9.48 µs, Busca = 1.83 µs
+- **BST:** Inserção = 1.44 µs, Remoção = 1.41 µs, Busca = 1.05 µs
 
 ![Desempenho por Escala](scale_comparison.png)
 
 **Discussão Teoria vs. Prática:**
-Teoricamente, ambas as estruturas apresentam complexidade $O(\log N)$ para todas as operações quando as entradas estão distribuídas aleatoriamente. Contudo, na prática, a **BST Simples é significativamente mais rápida** (cerca de 4.5x a 5x mais rápida) no caso médio.
+Teoricamente, ambas as estruturas apresentam complexidade $O(\log N)$ para todas as operações quando as entradas estão distribuídas aleatoriamente. Contudo, na prática, a **BST Simples é significativamente mais rápida** (cerca de 5.5x a 6x mais rápida) no caso médio.
 Isso ocorre devido à diferença gritante na **constante multiplicativa**:
 1. A AVL precisa recalcular e atualizar a altura (`height`), tamanho da subárvore (`size`) e a soma acumulada (`sum`) para cada nó visitado durante o caminho de retorno da recursão.
 2. A AVL precisa realizar testes de fator de balanceamento e aplicar rotações (simples ou duplas), o que exige múltiplas atribuições de ponteiros adicionais.
@@ -58,13 +58,13 @@ Quando as chaves de entrada são fornecidas em ordem crescente (`sorted`), a BST
 
 | Estrutura | Carga ($N$) | Ordenação | Tempo Médio (µs) | Mediana p50 (µs) | Percentil p99 (µs) |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **AVL** | 100 | sorted | 3.32 | 4.25 | 5.73 |
-| **BST** | 100 | sorted | 2.44 | 2.26 | 5.42 |
-| **AVL** | 1.000 | sorted | 6.39 | 7.96 | 10.94 |
-| **BST** | 1.000 | sorted | 14.03 | 9.79 | 67.12 |
-| **AVL** | 10.000 | sorted | 8.15 | 10.44 | 13.99 |
-| **BST** | 10.000 | sorted | 77.50 | 64.87 | 200.21 |
-| **AVL** | 100.000 | sorted | 8.55 | 10.31 | 17.80 |
+| **AVL** | 100 | sorted | 1.66 | 2.09 | 2.73 |
+| **BST** | 100 | sorted | 0.69 | 0.61 | 3.52 |
+| **AVL** | 1.000 | sorted | 4.22 | 4.70 | 10.32 |
+| **BST** | 1.000 | sorted | 5.79 | 5.67 | 13.67 |
+| **AVL** | 10.000 | sorted | 3.06 | 3.93 | 5.50 |
+| **BST** | 10.000 | sorted | 43.32 | 36.21 | 118.39 |
+| **AVL** | 100.000 | sorted | 4.39 | 5.19 | 10.74 |
 | **BST** | 100.000 | sorted | *Não Executado* | | |
 
 *Nota: O teste da BST ordenada em N=100.000 foi omitido pois o tempo total de execução seria proibitivo (complexidade quadrática total $O(N^2)$ em Python).*
@@ -74,8 +74,8 @@ Quando as chaves de entrada são fornecidas em ordem crescente (`sorted`), a BST
 **Ponto de Cruzamento (Crossover Point):**
 O ponto de cruzamento de desempenho ocorre logo após $N = 100$.
 - Para $N \le 100$, a BST ainda é ligeiramente mais rápida devido ao tamanho reduzido da árvore.
-- Para $N = 1.000$, a BST com chaves ordenadas já é 2.2x mais lenta do que a AVL.
-- Para $N = 10.000$, a BST ordenada torna-se **9.5x mais lenta** que a AVL.
+- Para $N = 1.000$, a BST com chaves ordenadas já é 1.37x mais lenta do que a AVL.
+- Para $N = 10.000$, a BST ordenada torna-se **14.1x mais lenta** que a AVL.
 
 **Explicação Teórica:**
 Chaves ordenadas forçam a BST a sempre inserir novos nós à direita. A estrutura degenera em uma lista simplesmente encadeada de altura $N$. A busca, inserção e remoção passam a ter complexidade de pior caso linear $O(N)$. Como a carga executa $N$ operações, o custo cumulativo total é $O(N^2)$, explicando o crescimento acentuado do tempo de execução.
@@ -88,15 +88,15 @@ Analisamos a sensibilidade da Árvore AVL a diferentes níveis de viés Zipfiano
 
 | Parâmetro $\theta$ | Tipo de Acesso | Tempo Médio Geral (µs) | Tempo Médio Busca S (µs) | Mediana Busca S (µs) |
 | :--- | :--- | :--- | :--- | :--- |
-| **0.00** | Uniforme | 12.64 | 2.86 | 2.75 |
-| **0.60** | Moderadamente Enviesado | 12.31 | 2.68 | 2.61 |
-| **0.99** | Padrão YCSB (Alto Viés) | 12.56 | 2.72 | 2.61 |
-| **1.20** | Muito Enviesado | 12.34 | 2.42 | 2.15 |
+| **0.00** | Uniforme | 7.08 | 1.69 | 1.50 |
+| **0.60** | Moderadamente Enviesado | 7.49 | 1.83 | 1.61 |
+| **0.99** | Padrão YCSB (Alto Viés) | 7.45 | 1.57 | 1.44 |
+| **1.20** | Muito Enviesado | 7.97 | 1.58 | 1.41 |
 
 ![Sensibilidade ao Enviesamento (Zipfian Theta)](theta_sensitivity.png)
 
 **Discussão sobre Localidade de Cache e Rotações:**
-1. **Localidade de Cache:** À medida que $\theta$ cresce (de 0.0 para 1.2), os acessos concentram-se cada vez mais em um conjunto pequeno de chaves quentes. Isso resulta em uma melhora perceptível no tempo médio da operação de busca (`search` / operacão `S`), reduzindo de **2.86 µs** ($\theta = 0.0$) para **2.42 µs** ($\theta = 1.2$). Esse ganho empírico deve-se à maior taxa de acertos nos caches de hardware da CPU (L1/L2/L3) para os nós mais superiores e frequentes da árvore.
+1. **Localidade de Cache:** À medida que $\theta$ cresce (de 0.0 para 1.2), os acessos concentram-se cada vez mais em um conjunto pequeno de chaves quentes. Isso resulta em uma melhora perceptível no tempo médio da operação de busca (`search` / operacão `S`), reduzindo de **1.69 µs** ($\theta = 0.0$) para **1.58 µs** ($\theta = 1.2$). Esse ganho empírico deve-se à maior taxa de acertos nos caches de hardware da CPU (L1/L2/L3) para os nós mais superiores e frequentes da árvore.
 2. **Rebalanceamento:** Apesar do alto viés nas buscas, a proporção de inserções e remoções novas continua alta (60% e 10%). Como novas chaves ainda alteram a estrutura, o custo de rebalanceamento e recomputação de somas acumuladas se mantém, explicando o motivo do tempo médio global (`all`) cair de forma muito mais sutil.
 
 ---
