@@ -1,0 +1,25 @@
+# Prompt Log - BST Implementation Guidance
+
+## Date
+
+2026-06-29
+
+## Tool
+
+ChatGPT (Web)
+
+## Goal
+
+Understand the algorithms used in a Binary Search Tree (BST) before implementing them manually.
+
+## Prompt
+
+Explain how to implement the insert, search, and delete operations in a Binary Search Tree using Python, including the three deletion cases (leaf, one child, and two children), without generating the complete implementation.
+
+## Result
+
+Received conceptual explanations about the BST algorithms, traversal logic, and deletion cases. The final implementation of the BST was written manually based on these explanations.
+
+## Notes
+
+The AI was used only as conceptual support. The complete implementation of `bst_tree.py` was developed manually.
